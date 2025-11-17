@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Registros</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #6a0dad;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 900px;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        display: flex;
+        gap: 40px;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+    .left, .right {
+        width: 50%;
+    }
+
+    h2 {
+        color: #6a0dad;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .btn {
+        background: #6a0dad;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .action-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #6a0dad;
+        font-size: 14px;
+        margin-right: 10px;
+        text-decoration: underline;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <h2>Registros</h2>
+
+        <button class="btn" onclick="location.href='cadastrar.html'">
+            Cadastrar Novo
+        </button>
+
+        <table id="tabela">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script>
+fetch("http://localhost:3000/api/pessoas")
+    .then(r => r.json())
+    .then(lista => {
+        let html = "";
+        lista.forEach(p => {
+            html += `
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${p.nome}</td>
+                    <td>
+                        <button class="action-btn" onclick="location.href='editar.html?id=${p.id}'">Editar</button>
+                        <button class="action-btn" onclick="del(${p.id})">Excluir</button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tabela").innerHTML += html;
+    });
+
+function del(id) {
+    fetch("http://localhost:3000/api/pessoas/" + id, { method: "DELETE" })
+        .then(() => location.reload());
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar</title>
+
+<style>
+    body {
+        font-family: Arial;
+        background: #6a0dad;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 450px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px #ddd;
+    }
+
+    h2 {
+        text-align: center;
+        color: #6a0dad;
+        margin-bottom: 20px;
+    }
+
+    .input-box {
+        background: #eeeeee;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        background: #6a0dad;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Cadastrar</h2>
+
+    <div class="input-box">
+        <input id="nome" placeholder="Nome">
+    </div>
+
+    <div class="input-box">
+        <input id="email" placeholder="Email">
+    </div>
+
+    <div class="input-box">
+        <input id="telefone" placeholder="Telefone">
+    </div>
+
+    <button class="btn" onclick="salvar()">Salvar</button>
+
+</div>
+
+<script>
+function salvar() {
+    fetch("http://localhost:3000/api/pessoas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            nome: nome.value,
+            email: email.value,
+            telefone: telefone.value
+        })
+    }).then(() => location.href = "index.html");
+}
+</script>
+
+</body>
+</html>
