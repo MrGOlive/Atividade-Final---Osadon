@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros</title>
+    <link rel = "stylesheet" href="style2.css">
+</head>
+<body>
+
+<h1>Registros Cadastrados</h1>
+<!--Botão que redireciona para a página de cadastro-->
+<button class="top-btn" onclick="window.location.href='cadastrar.html'">
+    Novo Cadastro
+</button>
+<!--Botão que redireciona para a página de edição-->
+<button class="top-btn" onclick="window.location.href='editar.html'">
+    Alterar Registro
+</button>
+
+<!--Tabela onde os dados cadastrados serão exibidos-->
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+<!--Corpo da tabela que vai ser preenchido dinamicamente com JavaScript-->
+    <tbody id="tabela"></tbody>
+</table>
+
+</body>
+</html>
