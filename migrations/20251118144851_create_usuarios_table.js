@@ -4,8 +4,8 @@
  */
 
 // .../migrations/20251118144851create_users_table.js
-exports.up = function(knex) {
-    return knex.schema.createTable('usuarios2', function(table) {
+exports.up = function (knex) {
+    return knex.schema.createTableIfNotExists('usuarios', function (table) {
         table.increments('id').primary(); // Chave primária auto-incrementável
         table.string('nome', 255).notNullable();
         table.string('cpf', 11).notNullable().unique();
@@ -16,6 +16,7 @@ exports.up = function(knex) {
     });
 };
 
-exports.down = function(knex) {
-    return knex.schema.dropTable('usuarios2'); // Reverte a migração     
+exports.down = function (knex) {
+    return knex.schema.dropTable('usuarios'); // Reverte a migração     
 };
+
