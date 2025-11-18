@@ -75,33 +75,8 @@
         <input id="telefone">
     </div>
 
-    <button class="btn" onclick="alterar()">Alterar</button>
+    <button class="btn"><a href="/home">Alterar</a></button>
 
 </div>
-
-<script>
-const id = new URLSearchParams(location.search).get("id");
-
-fetch("http://localhost:3000/api/pessoas/" + id)
-    .then(r => r.json())
-    .then(p => {
-        nome.value = p.nome;
-        email.value = p.email;
-        telefone.value = p.telefone;
-    });
-
-function alterar() {
-    fetch("http://localhost:3000/api/pessoas/" + id, {
-        method: "PUT",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify({
-            nome: nome.value,
-            email: email.value,
-            telefone: telefone.value
-        })
-    }).then(() => location.href = "index.html")
-}
-</script>
-
 </body>
 </html>

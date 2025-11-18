@@ -7,4 +7,12 @@ app.get("/home", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 })
 
+app.get("/cadastro", (req, res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'cadastrar.html'));
+})
+
+app.get("/alteracao", (req, res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'editar.html'));
+})
+
 app.listen(3000)

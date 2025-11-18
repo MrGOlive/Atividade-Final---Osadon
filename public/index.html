@@ -73,8 +73,8 @@
     <div class="left">
         <h2>Registros</h2>
 
-        <button class="btn" onclick="location.href='cadastrar.html'">
-            Cadastrar Novo
+        <button class="btn">
+            <a href="/cadastro">Cadastrar Novo</a>
         </button>
 
         <table id="tabela">
@@ -83,35 +83,19 @@
                 <th>Nome</th>
                 <th>Ações</th>
             </tr>
+            <tr>
+                <td>01</td>
+                <td>Matheus</td>
+                <td>???</td>
+                <td><a href="/alteracao">Alterar</a></td>
+                <td><a href="#">Deletar</a></td>
+            </tr>
         </table>
     </div>
 
 </div>
 
 <script>
-fetch("http://localhost:3000/api/pessoas")
-    .then(r => r.json())
-    .then(lista => {
-        let html = "";
-        lista.forEach(p => {
-            html += `
-                <tr>
-                    <td>${p.id}</td>
-                    <td>${p.nome}</td>
-                    <td>
-                        <button class="action-btn" onclick="location.href='editar.html?id=${p.id}'">Editar</button>
-                        <button class="action-btn" onclick="del(${p.id})">Excluir</button>
-                    </td>
-                </tr>
-            `;
-        });
-        document.getElementById("tabela").innerHTML += html;
-    });
-
-function del(id) {
-    fetch("http://localhost:3000/api/pessoas/" + id, { method: "DELETE" })
-        .then(() => location.reload());
-}
 </script>
 
 </body>

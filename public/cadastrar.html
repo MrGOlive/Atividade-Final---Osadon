@@ -78,23 +78,8 @@
         <input id="telefone" placeholder="Telefone">
     </div>
 
-    <button class="btn" onclick="salvar()">Salvar</button>
+    <button class="btn" ><a href="/home" style="color: white; text-decoration: none;">Salvar</a></button>
 
 </div>
-
-<script>
-function salvar() {
-    fetch("http://localhost:3000/api/pessoas", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            nome: nome.value,
-            email: email.value,
-            telefone: telefone.value
-        })
-    }).then(() => location.href = "index.html");
-}
-</script>
-
 </body>
 </html>
