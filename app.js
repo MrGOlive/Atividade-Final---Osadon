@@ -15,4 +15,12 @@ app.get("/alteracao", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public', 'editar.html'));
 })
 
+app.post("/cadastrar", (req, res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'cadastrar.html'));
+})
+
+app.post("/alterar", (req, res)=>{
+    res.sendFile(path.join(__dirname, 'public', 'editar.html'));
+})
+
 app.listen(3000)
