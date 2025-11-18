@@ -1,85 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Cadastrar</title>
-
-<style>
-    body {
-        font-family: Arial;
-        background: #6a0dad;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-
-    .container {
-        width: 450px;
-        background: white;
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 0 10px #ddd;
-    }
-
-    h2 {
-        text-align: center;
-        color: #6a0dad;
-        margin-bottom: 20px;
-    }
-
-    .input-box {
-        background: #eeeeee;
-        padding: 10px;
-        border-radius: 6px;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    input {
-        width: 100%;
-        border: none;
-        outline: none;
-        background: none;
-        font-size: 15px;
-    }
-
-    .btn {
-        width: 100%;
-        background: #6a0dad;
-        color: white;
-        padding: 12px;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        margin-top: 10px;
-        font-size: 16px;
-    }
-</style>
-
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel = "stylesheet" href="style.css">
+   
 </head>
 <body>
-
+<!--Container principal que segura os dois lados da página-->
 <div class="container">
-
-    <h2>Cadastrar</h2>
-
-    <div class="input-box">
-        <input id="nome" placeholder="Nome">
+<!--Lado esquerdo com título e texto de boas-vindas-->
+    <div class="left">
+        <h1>Bem Vindo!</h1>
+        <p>Cadastre suas informações pessoais para continuar.</p>
     </div>
-
-    <div class="input-box">
-        <input id="email" placeholder="Email">
+<!--Lado direito com o formulário de cadastro-->
+    <div class="right">
+        <div class="form-box">
+            <h2>Novo Cadastro</h2>
+            <!--Campo para digitar o nome-->  
+            <input type="text" id="nome" placeholder="Nome">
+            <!--Campo para digitar o email-->  
+            <input type="email" id="email" placeholder="Email">
+            <!--Campo para digitar o telefone-->  
+            <input type="text" id="telefone" placeholder="Telefone">
+            <!--Botão9 que chama a função salvarCadastro()-->  
+            <button onclick="salvarCadastro()">SALVAR</button>
+        </div>
     </div>
-
-    <div class="input-box">
-        <input id="telefone" placeholder="Telefone">
-    </div>
-
-    <button class="btn" ><a href="/home" style="color: white; text-decoration: none;">Salvar</a></button>
-
 </div>
+
+
+
 </body>
 </html>

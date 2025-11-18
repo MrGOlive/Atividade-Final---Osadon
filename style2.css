@@ -1,0 +1,45 @@
+ 
+/* style da segunda tela*/
+ body {
+            background: #fafafa;
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #5a0ea1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #5a0ea1;
+        }
+
+        th {
+            background: #5a0ea1;
+            color: white;
+        }
+
+        button {
+            padding: 8px 12px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkred;
+        }
+
+        .top-btn {
+            background: #7a1fd6;
+            margin-bottom: 15px;
+        }
