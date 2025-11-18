@@ -16,11 +16,11 @@ app.get("/alteracao", (req, res)=>{
 })
 
 app.post("/cadastrar", (req, res)=>{
-    res.sendFile(path.join(__dirname, 'public', 'cadastrar.html'));
+    res.sendFile(path.join(__dirname, 'public', 'cadastrar:id'));
 })
 
 app.post("/alterar", (req, res)=>{
-    res.sendFile(path.join(__dirname, 'public', 'editar.html'));
+    res.sendFile(path.join(__dirname, 'public', 'editar:id'));
 })
 
 app.listen(3000)
