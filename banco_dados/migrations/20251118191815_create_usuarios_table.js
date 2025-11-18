@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 
-// .../migrations/20251118144851create_users_table.js
+// .../migrations/20251118191815create_users_table.js
 exports.up = function (knex) {
     return knex.schema.createTableIfNotExists('usuarios', function (table) {
         table.increments('id').primary(); // Chave primária auto-incrementável
@@ -19,4 +19,3 @@ exports.up = function (knex) {
 exports.down = function (knex) {
     return knex.schema.dropTable('usuarios'); // Reverte a migração     
 };
-
