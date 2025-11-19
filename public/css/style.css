@@ -1,75 +1,58 @@
-
-/* style.css da primeira tela */
 body {
-            margin: 0;
-            font-family: Arial;
-            background: #f6f6f6;
-        }
+        font-family: Arial, sans-serif;
+        background: #6a0dad;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-        .container {
-            display: flex;
-            height: 100vh;
-        }
+    .container {
+        width: 900px;
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        display: flex;
+        gap: 40px;
+        box-shadow: 0 0 10px #ddd;
+    }
 
-        .left {
-            width: 40%;
-            background: linear-gradient(135deg, #5a0ea1, #8e2de2);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    .left, .right {
+        width: 50%;
+    }
 
-        .left h1 {
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
+    h2 {
+        color: #6a0dad;
+        margin-bottom: 20px;
+    }
 
-        .left p {
-            max-width: 300px;
-            text-align: center;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
 
-        .right {
-            width: 60%;
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
 
-        .form-box {
-            width: 350px;
-        }
+    .btn {
+        background: #6a0dad;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
 
-        .form-box h2 {
-            text-align: center;
-            color: #5a0ea1;
-            margin-bottom: 20px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #7a1fd6;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background: #5a0ea1;
-        }
+    .action-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: #6a0dad;
+        font-size: 14px;
+        margin-right: 10px;
+        text-decoration: underline;
+    }

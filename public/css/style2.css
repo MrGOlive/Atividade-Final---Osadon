@@ -1,45 +1,52 @@
- 
-/* style da segunda tela*/
- body {
-            background: #fafafa;
-            font-family: Arial;
-            padding: 20px;
-        }
+    body {
+        font-family: Arial;
+        background: #6a0dad;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-        h1 {
-            color: #5a0ea1;
-        }
+    .container {
+        width: 450px;
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 10px #ddd;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    h2 {
+        text-align: center;
+        color: #6a0dad;
+        margin-bottom: 20px;
+    }
 
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #5a0ea1;
-        }
+    .input-box {
+        background: #eeeeee;
+        padding: 10px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        th {
-            background: #5a0ea1;
-            color: white;
-        }
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 15px;
+    }
 
-        button {
-            padding: 8px 12px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: darkred;
-        }
-
-        .top-btn {
-            background: #7a1fd6;
-            margin-bottom: 15px;
-        }
+    .btn {
+        width: 100%;
+        background: #6a0dad;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
+    }

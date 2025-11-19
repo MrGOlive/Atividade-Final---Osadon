@@ -3,7 +3,7 @@ const path = require('path');
 const usuarios = require('./crud')
 
 const app = express() // Instanciando a classe "express" como o objeto "app" 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.get("/home", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

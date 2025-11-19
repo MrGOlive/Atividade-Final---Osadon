@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Registros</title>
-    <link type="text/css" rel="stylesheet" href="http://localhost:3000/public/css/style.css">
+<meta charset="UTF-8">
+<title>Lista de Registros</title>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
+
+<div class="container">
+
     <div class="left">
         <h2>Registros</h2>
 
-        <button class="btn">
-            <a href="/cadastro">Cadastrar Novo</a>
+        <button class="btn" onclick="location.href='cadastrar.html'">
+            Cadastrar Novo
         </button>
 
         <table id="tabela">
@@ -20,20 +22,9 @@
                 <th>Nome</th>
                 <th>Ações</th>
             </tr>
-            <tr>
-                <td>01</td>
-                <td>Matheus</td>
-                <td>???</td>
-                <td><a href="/alteracao">Alterar</a></td>
-                <td><a href="#">Deletar</a></td>
-            </tr>
         </table>
     </div>
 
-    </div>
-
-<script>
-</script>
-
+</div>
 </body>
 </html>
