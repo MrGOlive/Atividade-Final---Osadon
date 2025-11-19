@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 // .../migrations/20251118193105create_users_table.js
-exports.up = function (knex) {
+exports.up = async function (knex) {
     const exists = await knex.schema.hasTable('usuarios');
 
     if (!exists) {
