@@ -1,14 +1,13 @@
 const express = require("express") // Chamando a classe "express"
 const path = require('path');
-const knex = require("./banco_dados/db")
+const usuarios = require('./crud')
 
 const app = express() // Instanciando a classe "express" como o objeto "app" 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/home", (req, res)=>{
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    knex('usuarios').then(data => {
-        console.log(data)
-    });
+    console.log(usuarios)
 })
 
 app.get("/cadastro", (req, res)=>{
