@@ -19,6 +19,17 @@
                 <th>Nome</th>
                 <th>Ações</th>
             </tr>
+            <% usuarios.forEach(usuario =>{%>
+            <tr>
+                <td><%= usuario.id %></td>
+                <td><%= usuario.nome %></td>
+                <td>
+                    <button class="btn" onclick="location.href='/alteracao'">Editar</button>
+                    <button class="btn">Excluir</button>
+                </td>
+            </tr>
+            <% }) %>
+
         </table>
     </div>
 </div>
