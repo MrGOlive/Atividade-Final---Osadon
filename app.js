@@ -1,6 +1,6 @@
 const express = require("express") // Chamando a classe "express"
 const path = require('path');
-const usuariosOBJ = require('./crud')
+const { usuarios } = require("./crud");
 
 const app = express() // Instanciando a classe "express" como o objeto "app" 
 app.use(express.static('public'));
@@ -10,8 +10,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get("/home", async (req, res)=>{;
-    const usuarios = await usuariosOBJ
-    res.render('index', {usuarios: usuarios})
+    const users = await usuarios
+    res.render('index', {usuarios: users})
 })
 
 app.get("/cadastro", (req, res)=>{
@@ -23,7 +23,7 @@ app.get("/alteracao", (req, res)=>{
 })
 
 app.post("/cadastrar", (req, res)=>{
-    res.sendFile(path.join(__dirname, 'public', 'cadastrar:id'));
+    
 })
 
 app.post("/alterar", (req, res)=>{
