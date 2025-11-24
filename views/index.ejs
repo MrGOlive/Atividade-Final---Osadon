@@ -44,5 +44,11 @@
             </table>
     </div>
 </div>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('msg') === 'sucesso') {
+        alert("Operação realizada com sucesso!");
+    }
+</script>
 </body>
 </html>
