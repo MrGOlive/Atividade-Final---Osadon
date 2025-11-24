@@ -1,13 +1,14 @@
 const knex = require("./banco_dados/db")
 
+// Função de inserir o usuario
 async function insertUsuario(nome, email, tel){
     try {
         await knex('usuarios').insert({
             nome: nome,
             email: email,
             telefone: tel,
-            cpf:"11111111113",
-            data_Nascimento: "1000-01-01"
+            cpf:"11111111114",
+            data_Nascimento: "1000-01-01" // adicionar os campos cpf e data de nascimento 
         })
         console.log('Usuário inserido com sucesso!');
     }   catch (error) {                     
@@ -22,10 +23,11 @@ async function readUsuarios(){
         return usuarios
     }
     catch{
-        console.error('ERRO ao buscar usuários:', error); 
+        console.error('ERRO ao buscar usuários:', error);
     }
 }
 
+// Função pra ler um registro especifico: facilitar o update 
 async function readUm(id) {
     try{
         const usuarios = await knex('usuarios').where("id",id).select()
@@ -36,6 +38,7 @@ async function readUm(id) {
     }
 }
 
+// Função para atualizar um registro
 async function updateUsuarios(id, nome, email, tel) {
     try{
         await knex('usuarios').where("id",id).update({
@@ -51,6 +54,7 @@ async function updateUsuarios(id, nome, email, tel) {
     }
 }
 
+// Função para deletar um registro
 async function deletarUsuario(id) {
     try{
         return await knex('usuarios')
