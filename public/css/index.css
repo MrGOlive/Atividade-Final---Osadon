@@ -8,17 +8,13 @@ body {
     }
 
     .container {
-        width: 900px;
+        width: auto;
         background: white;
         border-radius: 20px;
         padding: 40px;
         display: flex;
         gap: 40px;
         box-shadow: 0 0 10px #ddd;
-    }
-
-    .left, .right {
-        width: 50%;
     }
 
     h2 {
@@ -33,6 +29,7 @@ body {
     }
 
     th, td {
+        width: auto;
         padding: 12px;
         border-bottom: 1px solid #ddd;
     }
