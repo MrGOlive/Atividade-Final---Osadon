@@ -1,4 +1,5 @@
 const knex = require("./banco_dados/db")
+
 async function insertUsuario(nome, email, tel){
     try {
         await knex('usuarios').insert({
@@ -23,7 +24,8 @@ async function readUsuarios(){
     catch{
         console.error('ERRO ao buscar usuários:', error); 
     }
-} 
+}
+
 async function readUm(id) {
     try{
         const usuarios = await knex('usuarios').where("id",id).select()
@@ -60,7 +62,10 @@ async function deletarUsuario(id) {
     }
 }
 
-
-
-const usuarios = readUsuarios()
-module.exports = {usuario: readUm, usuarios, inserir: insertUsuario, deletar: deletarUsuario, alterar:updateUsuarios}
+module.exports = {
+    usuario: readUm, 
+    usuarios: readUsuarios, 
+    inserir: insertUsuario, 
+    deletar: deletarUsuario, 
+    alterar: updateUsuarios
+}

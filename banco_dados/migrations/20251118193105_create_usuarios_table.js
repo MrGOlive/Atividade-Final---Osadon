@@ -18,7 +18,7 @@ exports.up = async function (knex) {
         });
     }
     // Se a tabela já existe, a função simplesmente retorna e não faz nada.
-    // O Knex trata a migração como "já executada" se ela não falhar.
+    // O Knex trata a migração como "já executada" se ela não f
 };
 
 exports.down = function (knex) {

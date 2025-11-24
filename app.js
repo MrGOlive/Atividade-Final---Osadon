@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express() // Instanciando a classe "express" como o objeto "app" 
 
 app.use(bodyParser.json()); // To parse JSON request bodies
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('public'));
 // Configura o EJS como o mecanismo de template
@@ -21,7 +21,7 @@ app.get("/",(req, res)=>{
 
 app.get("/home", async (req, res)=>{
     try{
-        const users = await crud.usuarios
+        const users = await crud.usuarios()
         res.render('index', {usuarios: users})
     }
     catch(error){
@@ -32,18 +32,6 @@ app.get("/home", async (req, res)=>{
 app.get("/cadastro", (req, res)=>{
     res.render('cadastro')
 })
-
-app.post('/alteracao/:id', async (req, res)=>{
-    const UserID = req.params.id
-    try{
-        const users = await crud.usuario(UserID)
-        res.render('alteracao', {usuario: users[0]})
-    }
-    catch(error){
-        console.error(error)
-    }
-})
-
 
 app.post("/cadastrar", async (req, res)=>{
     const txNome = req.body.nome;
@@ -57,6 +45,17 @@ app.post("/cadastrar", async (req, res)=>{
         console.error("Erro ao cadastrar usuário:", error);
     }
     res.redirect('/home')
+})
+
+app.post('/alteracao/:id', async (req, res)=>{
+    const UserID = req.params.id
+    try{
+        const users = await crud.usuario(UserID)
+        res.render('alteracao', {usuario: users[0]})
+    }
+    catch(error){
+        console.error(error)
+    }
 })
 
 app.post("/alterar/:id", async(req, res)=>{
@@ -81,4 +80,5 @@ app.post("/deletar/:id", async (req, res)=>{
     }
     res.redirect('/home')
 })
+
 app.listen(3000)
