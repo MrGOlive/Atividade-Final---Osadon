@@ -19,6 +19,7 @@ app.get("/",(req, res)=>{
     res.redirect("/home")
 })
 
+
 app.get("/home", async (req, res)=>{
     try{
         const users = await crud.usuarios()
@@ -37,7 +38,7 @@ app.post("/cadastrar", async (req, res)=>{
     const txNome = req.body.nome;
     const txEmail = req.body.email;
     const txTel = req.body.tel;
-    
+
     try {
         await crud.inserir(txNome, txEmail, txTel)
  
@@ -45,6 +46,7 @@ app.post("/cadastrar", async (req, res)=>{
         console.error("Erro ao cadastrar usuário:", error);
     }
     res.redirect('/home')
+
 })
 
 app.post('/alteracao/:id', async (req, res)=>{
