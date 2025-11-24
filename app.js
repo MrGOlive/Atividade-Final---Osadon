@@ -11,8 +11,10 @@ app.use(bodyParser.json()); // To parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('public'));
+
 // Configura o EJS como o mecanismo de template
 app.set('view engine', 'ejs');
+
 // Define o diretório onde os templates HTML estarão localizados
 app.set('views', path.join(__dirname, 'views'));
 
@@ -82,7 +84,7 @@ app.post("/deletar/:id", async (req, res)=>{
     try{
         //pop up - usuario alterado com sucesso - MARINA
         await crud.deletar(userID)
-    }catch{
+    }catch(error){
         //pop up - erro ao cadastrar usuario - MARINA
         console.error("Erro ao deletar usuário:", error);
     }
