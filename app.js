@@ -2,6 +2,7 @@ const express = require("express") // Chamando a classe "express"
 const path = require('path');
 const crud = require("./crud");
 const bodyParser = require('body-parser');
+const PORT = 3000; // Porta do Servidor
 
 const app = express() // Instanciando a classe "express" como o objeto "app" 
 
@@ -87,6 +88,9 @@ app.post("/deletar/:id", async (req, res)=>{
     res.redirect('/home')
 })
 
-app.listen(3000)
+// comando para manter o servidor ligado
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
