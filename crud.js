@@ -1,14 +1,14 @@
 const knex = require("./banco_dados/db")
 
 // Função de inserir o usuario
-async function insertUsuario(nome, email, tel){
+async function insertUsuario(nome, email, tel, cpf, dataNasc){
     try {
         await knex('usuarios').insert({
             nome: nome,
             email: email,
             telefone: tel,
-            cpf:"11111111114",
-            data_Nascimento: "1000-01-01" // adicionar os campos cpf e data de nascimento 
+            cpf: cpf,
+            data_Nascimento: dataNasc // adicionar os campos cpf e data de nascimento 
         })
         console.log('Usuário inserido com sucesso!');
     }   catch (error) {                     
@@ -45,14 +45,14 @@ async function readUm(id) {
 }
 
 // Função para atualizar um registro
-async function updateUsuarios(id, nome, email, tel) {
+async function updateUsuarios(id, nome, email, tel, cpf, dataNasc) {
     try{
         await knex('usuarios').where("id",id).update({
             nome: nome,
             email: email,
             telefone: tel,
-            cpf:"11111111113",
-            data_Nascimento: "1000-01-01" 
+            cpf: cpf,
+            data_Nascimento: dataNasc
     })
 
     }catch (error){

@@ -49,10 +49,10 @@ app.get("/cadastro", (req, res)=>{
 
 // Rota que PROCESSA o cadastro
 app.post("/cadastrar", async (req, res)=>{
-    const { nome, email, tel } = req.body;
+    const { nome, email, tel, cpf, data_nascimento } = req.body;
 
     try {
-        await crud.inserir(nome, email, tel);
+        await crud.inserir(nome, email, tel, cpf, data_nascimento);
         // Envia sinal de sucesso na URL
         res.redirect('/home?status=success&action=cadastro');
     } catch (error) {
@@ -85,10 +85,10 @@ app.get('/alteracao/:id', async (req, res)=>{
 // Rota que EFETIVA a alteração
 app.post("/alterar/:id", async(req, res)=>{
     const UserID = req.params.id
-    const { nome, email, tel } = req.body;
+    const { nome, email, tel, cpf, data_nascimento } = req.body;
 
     try{
-        await crud.alterar(UserID, nome, email, tel);
+        await crud.alterar(UserID, nome, email, tel, cpf, data_nascimento);
         // SUCESSO
         res.redirect('/home?status=success&action=edicao');
     } catch(error){
