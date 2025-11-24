@@ -45,13 +45,13 @@ app.post("/cadastrar", async (req, res)=>{
 
     try {
         await crud.inserir(nome, email, tel);
-        // Redireciona para home (Status 302 automático)
-        res.redirect('/home?msg=sucesso');
+        // Envia sinal de sucesso na URL
+        res.redirect('/home?status=success&action=cadastro');
     } catch (error) {
-        console.error("Erro ao cadastrar usuário:", error);
-        // ERRO: Definimos status 500 e mandamos uma mensagem (ou renderizamos página de erro)
-        // O return é importante pois garante que o código pare aqui
-        return res.status(500).send("Ocorreu um erro ao cadastrar o usuário: " + error.message);
+        console.error("Erro:", error);
+        // Envia sinal de erro na URL com a mensagem técnica (segura para URL)
+        const errorMsg = encodeURIComponent(error.message);
+        res.redirect(`/home?status=error&message=${errorMsg}`);
     }
 
 })
@@ -82,12 +82,11 @@ app.post("/alterar/:id", async(req, res)=>{
     try{
         await crud.alterar(UserID, nome, email, tel);
         // SUCESSO
-        res.redirect('/home?msg=sucesso');
+        res.redirect('/home?status=success&action=edicao');
     } catch(error){
-        //pop up - erro ao alterar usuario - MARINA
-        console.error(error);
-        // ERRO
-        return res.status(500).send("Erro ao alterar usuário: " + error.message);
+        console.error("Erro:", error);
+        const errorMsg = encodeURIComponent(error.message);
+        res.redirect(`/home?status=error&message=${errorMsg}`);
     }
 })
 
@@ -97,11 +96,11 @@ app.post("/deletar/:id", async (req, res)=>{
     try{
         await crud.deletar(userID);
         // SUCESSO
-        res.redirect('/home?msg=sucesso');
+        res.redirect('/home?status=success&action=exclusao');
     } catch (error){
-        console.error("Erro ao deletar usuário:", error);
-        // ERRO
-        return res.status(500).send("Erro ao deletar usuário. Detalhes: " + error.message);
+        console.error("Erro:", error);
+        const errorMsg = encodeURIComponent(error.message);
+        res.redirect(`/home?status=error&message=${errorMsg}`);
     }
 })
 
