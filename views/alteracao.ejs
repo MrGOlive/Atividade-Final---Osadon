@@ -3,31 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Editar</title>
- <link rel = "stylesheet" href="/css/alteracao.css">
+<link rel = "stylesheet" href="/css/alteracao.css">
 </head>
 <body>
 <!--Container principal que agrupa todos os elementos-->
+<form action="/alterar/<%= usuario.id %>" method="post">
 <div class="container">
-
     <h2>Editar Registro</h2>
 <!--Caixa de entrada para editar o nome-->
     <div class="input-box">
-        <input id="nome">
+        <input id="nome" value="<%= usuario.nome %>" name="nome">
     </div>
 <!--Caixa de entrada para editar o email-->
     <div class="input-box">
-        <input id="email">
+        <input id="email" value="<%= usuario.email %>" name="email">
     </div>
 <!--Caixa de entrada para editar o telefone-->
     <div class="input-box">
-        <input id="telefone">
+        <input id="telefone" value="<%= usuario.telefone %>" name="tel">
     </div>
 <!--Botão que executa a função alterar() quando clicado-->
-    <button class="btn" onclick="alterar()">Alterar</button>
-
+    <input type="submit" class="btn" value="Alterar">
+</form>
 </div>
-
-
-
 </body>
 </html>

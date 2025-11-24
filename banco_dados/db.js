@@ -8,4 +8,4 @@ const config = require('./knexfile');   // 2. Importa a o arquivo acima
 // Invoca a função knex() e passa para ela apenas a parte development do arquivo de configuração: knex abre o "pool" de conexões
 const db = knex(config.development);
 
-module.exports = db;    // A variável db é a conexão viva. 
+module.exports = db;    // A variável db é a conexão viva.
