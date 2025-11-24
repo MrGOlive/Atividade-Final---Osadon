@@ -85,7 +85,7 @@ app.post("/deletar/:id", async (req, res)=>{
         //pop up - usuario alterado com sucesso - MARINA
         await crud.deletar(userID)
     }catch(error){
-        //pop up - erro ao cadastrar usuario - MARINA
+        alert('Erro ao deletar usuário');//pop up - erro ao cadastrar usuario - MARINA
         console.error("Erro ao deletar usuário:", error);
     }
     res.redirect('/home')
