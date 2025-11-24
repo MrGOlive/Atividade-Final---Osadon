@@ -1,6 +1,7 @@
 const express = require("express") // Chamando a classe "express"
 const path = require('path');
 const crud = require("./crud");
+const formato = require("./formato")
 const bodyParser = require('body-parser');
 const PORT = 3000; // Porta do Servidor
 
@@ -24,8 +25,15 @@ app.get("/",(req, res)=>{
 app.get("/home", async (req, res)=>{
     try{
         const users = await crud.usuarios();
+        const usersFormatados = users.map(user => ({
+            ...user,
+            cpf: formato.cpf(user.cpf),
+            telefone: formato.telefone(user.telefone),
+            data_nascimento: formato.dataNasc(user.data_nascimento)
+        }));
         // Status 200 é o padrão do render
-        res.status(200).render('index', {usuarios: users});
+        res.status(200).render('index', {usuarios: usersFormatados});
+        
     } 
     catch(error){
         console.error(error)
