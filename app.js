@@ -82,3 +82,5 @@ app.post("/deletar/:id", async (req, res)=>{
 })
 
 app.listen(3000)
+
+app.use(express.static(path.join(__dirname, 'public')));
