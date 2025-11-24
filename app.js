@@ -46,7 +46,7 @@ app.post("/cadastrar", async (req, res)=>{
     try {
         await crud.inserir(nome, email, tel);
         // Redireciona para home (Status 302 automático)
-        res.redirect('/home/home?msg=sucesso');
+        res.redirect('/home?msg=sucesso');
     } catch (error) {
         console.error("Erro ao cadastrar usuário:", error);
         // ERRO: Definimos status 500 e mandamos uma mensagem (ou renderizamos página de erro)
@@ -82,7 +82,7 @@ app.post("/alterar/:id", async(req, res)=>{
     try{
         await crud.alterar(UserID, nome, email, tel);
         // SUCESSO
-        res.redirect('/home/home?msg=sucesso');
+        res.redirect('/home?msg=sucesso');
     } catch(error){
         //pop up - erro ao alterar usuario - MARINA
         console.error(error);
@@ -97,7 +97,7 @@ app.post("/deletar/:id", async (req, res)=>{
     try{
         await crud.deletar(userID);
         // SUCESSO
-        res.redirect('/home/home?msg=sucesso');
+        res.redirect('/home?msg=sucesso');
     } catch (error){
         console.error("Erro ao deletar usuário:", error);
         // ERRO
