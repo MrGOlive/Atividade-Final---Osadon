@@ -43,5 +43,50 @@
             </table>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Função que verifica a URL quando a página carrega
+    window.onload = function() {
+        // Pega os parâmetros da URL (ex: ?status=success&action=cadastro)
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const action = urlParams.get('action');
+        const message = urlParams.get('message');
+
+        // LÓGICA DE SUCESSO
+        if (status === 'success') {
+            let titulo = 'Sucesso!';
+            let texto = 'Operação realizada.';
+
+            if(action === 'cadastro') texto = 'Usuário cadastrado com sucesso!';
+            if(action === 'edicao') texto = 'Dados do usuário atualizados!';
+            if(action === 'exclusao') texto = 'Usuário removido do sistema.';
+
+            Swal.fire({
+                title: titulo,
+                text: texto,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#3085d6'
+            }).then(() => {
+                // (Opcional) Limpa a URL para o popup não aparecer de novo se der F5
+                window.history.replaceState(null, null, window.location.pathname);
+            });
+        }
+
+        // LÓGICA DE ERRO
+        if (status === 'error') {
+            Swal.fire({
+                title: 'Ops! Algo deu errado.',
+                text: message || 'Ocorreu um erro no servidor.',
+                icon: 'error',
+                confirmButtonText: 'Fechar'
+            }).then(() => {
+                window.history.replaceState(null, null, window.location.pathname);
+            });
+        }
+    }
+</script>
 </body>
 </html>
