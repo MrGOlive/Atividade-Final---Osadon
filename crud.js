@@ -13,6 +13,8 @@ async function insertUsuario(nome, email, tel){
         console.log('Usuário inserido com sucesso!');
     }   catch (error) {                     
         console.error('ERRO ao inserir usuário:', error);
+        // Retorna lista vazia para o código que chamou a função
+        return [];
     }        
 }
 
@@ -22,8 +24,10 @@ async function readUsuarios(){
         const usuarios = await knex('usuarios').select()
         return usuarios
     }
-    catch{
+    catch (error){
         console.error('ERRO ao buscar usuários:', error);
+        // Retorna lista vazia para o código que chamou a função
+        return [];
     }
 }
 
@@ -33,8 +37,10 @@ async function readUm(id) {
         const usuarios = await knex('usuarios').where("id",id).select()
         return usuarios
     }
-    catch{
+    catch (error){
         console.error('ERRO ao buscar usuários:', error);
+        // Retorna lista vazia para o código que chamou a função
+        return [];
     }
 }
 
@@ -49,8 +55,10 @@ async function updateUsuarios(id, nome, email, tel) {
             data_Nascimento: "1000-01-01" 
     })
 
-    }catch(error){
-        console.log(error)
+    }catch (error){
+        console.log(error);
+        // Retorna lista vazia para o código que chamou a função
+        return [];
     }
 }
 
@@ -61,8 +69,11 @@ async function deletarUsuario(id) {
         .where('id', id)
         .del()
     }
-    catch(error){
+    catch (error){
+        // Loga o erro no terminal para o desenvolvedor
         console.error('ERRO ao deletar usuários:', error);
+        // Retorna lista vazia para o código que chamou a função
+        return [];
     }
 }
 
