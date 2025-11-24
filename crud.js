@@ -56,7 +56,7 @@ async function updateUsuarios(id, nome, email, tel) {
     })
 
     }catch (error){
-        onsole.error('ERRO ao atualizar o usuário:', error);
+        Console.error('ERRO ao atualizar o usuário:', error);
         // Retorna lista vazia para o código que chamou a função
         return [];
     }
