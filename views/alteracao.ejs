@@ -10,19 +10,36 @@
 <div class="container">
 <form action="/alterar/<%= usuario.id %>" method="post">
     <h2>Editar Registro</h2>
-<!--Caixa de entrada para editar o nome-->
+
+    <!--Caixa de entrada para editar o nome-->
     <div class="input-box">
         <input id="nome" value="<%= usuario.nome %>" name="nome">
     </div>
-<!--Caixa de entrada para editar o email-->
+
+    <!--Caixa de entrada para editar o email-->
     <div class="input-box">
         <input id="email" value="<%= usuario.email %>" name="email">
     </div>
-<!--Caixa de entrada para editar o telefone-->
+
+    <!--Caixa de entrada para editar o telefone-->
     <div class="input-box">
         <input id="telefone" value="<%= usuario.telefone %>" name="tel">
     </div>
-<!--Botão que executa a função alterar() quando clicado-->
+
+    <!--Caixa de entrada para editar o CPF-->
+    <div class="input-box">
+        <input id="cpf" value="<%= usuario.cpf %>" name="cpf" placeholder="CPF">
+    </div>
+
+    <!--Caixa de entrada para editar a Data de Nascimento-->
+    <div class="input-box">
+        <input id="data_nascimento" type="date" value="<%= usuario.data_nascimento %>" name="data_nascimento">
+    </div>
+
+    <input type="submit" class="btn" value="Salvar">
+</form>
+</div>
+e executa a função alterar() quando clicado-->
     <input type="submit" class="btn" value="Alterar">
 </form>
 </div>
