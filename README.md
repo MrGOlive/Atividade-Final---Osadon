@@ -1,17 +1,10 @@
-Integrantes:
-Beatriz Cristiane Haberman Severo Alves
-José Matheus Santos Filho
-Luiz Miguel Gonçalves de Oliveira
-Marina Magalhães de Castro Torres
-Matheus Gabriel Fernandes Santana
-Victor Luiz Barreira Ferreira
-
-
-O texto que você forneceu anteriormente (o Guia de Usuário da Aplicação CRUD de Cadastro) já foi entregue em código Markdown na minha resposta anterior.
-
-Aqui está esse mesmo código Markdown novamente, dentro de um bloco de código, para facilitar a cópia:
-
-Markdown
+Integrantes:  
+Beatriz Cristiane Haberman Severo Alves  
+José Matheus Santos Filho  
+Luiz Miguel Gonçalves de Oliveira  
+Marina Magalhães de Castro Torres  
+Matheus Gabriel Fernandes Santana  
+Victor Luiz Barreira Ferreira  
 
 ## 📘 Guia de Usuário da Aplicação CRUD de Cadastro
 
