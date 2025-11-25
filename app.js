@@ -5,7 +5,7 @@ const formato = require("./formato")
 const bodyParser = require('body-parser');
 const PORT = 3000; // Porta do Servidor
 
-const app = express() // Instanciando a classe "express" como o objeto "app" 
+const app = express() // Instanciando a classe "express" como o objeto "app"
 
 app.use(bodyParser.json()); // To parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,8 +33,7 @@ app.get("/home", async (req, res)=>{
         }));
         // Status 200 é o padrão do render
         res.status(200).render('index', {usuarios: usersFormatados});
-        
-    } 
+    }
     catch(error){
         console.error(error)
         // ERRO 500: Erro interno do servidor
@@ -50,7 +49,7 @@ app.get("/cadastro", (req, res)=>{
 // Rota que PROCESSA o cadastro
 app.post("/cadastrar", async (req, res)=>{
     const { nome, email, tel, cpf, data_nascimento } = req.body;
-
+    
     try {
         await crud.inserir(nome, email, tel, cpf, data_nascimento);
         // Envia sinal de sucesso na URL
