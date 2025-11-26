@@ -1,17 +1,16 @@
 const express = require("express");
 const path = require('path');
 const crud = require("./crud");
-// const formato = require("./formato"); // Não vamos precisar formatar CPF/Tel de boi
 const bodyParser = require('body-parser');
 const multer = require('multer'); // Importando o Multer
 const PORT = 3000;
 
 const app = express();
 
-// Configuração do Multer (Upload de Imagens)
+// Configuração do Multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/uploads/') // Pasta onde salva
+        cb(null, 'public/uploads/')
     },
     filename: function (req, file, cb) {
         // Salva com data atual + nome original para não substituir arquivos iguais
@@ -32,7 +31,7 @@ app.get("/", (req, res) => {
     res.redirect("/home");
 });
 
-// Rota HOME (Listar Bois)
+// Rota HOME para Listar Bois
 app.get("/home", async (req, res) => {
     try {
         const bois = await crud.listarBois();
@@ -54,7 +53,6 @@ app.get("/cadastro", (req, res) => {
 });
 
 // PROCESSAR Cadastro (Com upload de foto)
-// 'foto' é o name="foto" que você vai colocar no input do HTML
 app.post("/cadastrar", upload.single('foto'), async (req, res) => {
     // Pegando os dados novos do formulário
     const { numero_brinco, nome, registro, pai, mae, peso, data_nascimento } = req.body;
@@ -71,7 +69,7 @@ app.post("/cadastrar", upload.single('foto'), async (req, res) => {
     }
 });
 
-// Rota Alteração (Formulário)
+// Alteração
 app.get('/alteracao/:id', async (req, res) => {
     const id = req.params.id;
     try {
@@ -89,7 +87,6 @@ app.post("/alterar/:id", upload.single('foto'), async (req, res) => {
     const id = req.params.id;
     const { numero_brinco, raca, peso, data_nascimento } = req.body;
     
-    // Lógica: Se o usuário enviou nova foto, atualiza. Se não, teríamos que manter a antiga (no crud simples vamos só ignorar se vier vazio)
     const foto_url = req.file ? `/uploads/${req.file.filename}` : undefined;
 
     try {

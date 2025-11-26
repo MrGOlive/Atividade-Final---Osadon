@@ -4,8 +4,7 @@
 CREATE DATABASE IF NOT EXISTS fazenda;
 USE fazenda;
 
--- 2. Cria o usuário 'admin' para o professor não precisar mudar o código
--- (Comandos compatíveis com MySQL 5.7 e 8.0)
+-- 2. Cria o usuário 'admin'
 CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'senac';
 GRANT ALL PRIVILEGES ON fazenda.* TO 'admin'@'localhost';
 FLUSH PRIVILEGES;

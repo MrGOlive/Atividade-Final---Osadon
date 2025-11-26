@@ -4,11 +4,10 @@ async function insertBoi(numero_brinco, nome, registro, pai, mae, peso, dataNasc
     try {
         await knex('bois').insert({
             numero_brinco: numero_brinco,
-            nome: nome,        // Novo
-            registro: registro, // Novo
-            pai: pai,          // Novo
-            mae: mae,          // Novo
-            // raca: 'Mestiço', // Removi raça da tela, pode deixar fixo ou null se o banco permitir
+            nome: nome,        
+            registro: registro, 
+            pai: pai,          
+            mae: mae,          
             peso: peso,
             data_nascimento: dataNasc,
             foto_url: fotoUrl
