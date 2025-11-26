@@ -2,37 +2,149 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro</title>
-    <link rel = "stylesheet" href="/css/cadastro.css">
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Animais</title>
+    <style>
+        /* Reset básico */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Menu Superior (Estilo Desktop) */
+        nav {
+            background-color: #e0e0e0;
+            border-bottom: 1px solid #ccc;
+            padding: 5px 10px;
+            margin-bottom: 30px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+        nav a { text-decoration: none; color: #333; }
+        nav a:hover { color: #000; text-decoration: underline; }
+
+        /* Container do Formulário */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: normal;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        /* Estilo dos Inputs */
+        input[type="text"], 
+        input[type="number"], 
+        input[type="date"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px; /* Cantos levemente arredondados */
+            font-size: 14px;
+            background-color: #fff;
+            color: #777; /* Cor do texto placeholder parecida com a imagem */
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        /* Linha dividida (Peso e Data) */
+        .row-split {
+            display: flex;
+            gap: 15px;
+        }
+        .row-split input {
+            width: 50%;
+        }
+
+        /* Área dos Botões */
+        .btn-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        button {
+            padding: 8px 20px;
+            border: 1px solid #ccc;
+            background-color: #e0e0e0;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        button:hover { background-color: #d0d0d0; }
+
+        .btn-save {
+            border: 2px solid #87CEEB; /* Borda azul clara */
+            background-color: #e0e0e0; 
+            font-weight: bold;
+        }
+        
+        /* Ajuste para o input de foto (exigência do professor) ficar discreto */
+        .foto-input {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
-<!--Container principal que segura os dois lados da página-->
 
-<div class="container">
-    <h2>Cadastrar</h2>
-    <form action="/cadastrar" method="post">
-        <div class="input-box">
-            <input id="nome" placeholder="Nome" name="nome">
-        </div>
-        <div class="input-box">
-            <input id="email" placeholder="Email" name="email">
-        </div>
-        <div class="input-box">
-            <input id="telefone" placeholder="Telefone" name="tel">
-        </div>
-        <div class="input-box">
-            <input id="cpf" placeholder="CPF" name="cpf">
-        </div>
-        <div class="input-box">
-            <input id="data_nascimento" type="date" name="data_nascimento">
-        </div>
-        <input type="submit" class="btn" value="Salvar">
-    </form>
-</div>
+    <nav>
+        <ul>
+            <li><a href="#">Cadastros</a></li>
+            <li><a href="#">Relatórios</a></li>
+            <li><a href="#">Laboratório</a></li>
+            <li><a href="#">Movimentação</a></li>
+            <li><a href="#">Estoque</a></li>
+        </ul>
+    </nav>
 
+    <div class="container">
+        <h2>Cadastro de animais</h2>
 
+        <form action="/cadastrar" method="POST" enctype="multipart/form-data">
+            
+            <input type="text" name="numero_brinco" placeholder="Digite o codigo do lacre" required>
+            
+            <input type="text" name="nome" placeholder="Digite o nome do animal">
+            
+            <input type="text" name="registro" placeholder="Digite o codigo do registro">
+            
+            <input type="text" name="pai" placeholder="Digite o código de registro do pai">
+            
+            <input type="text" name="mae" placeholder="Digite o código de registro da mãe">
 
+            <div class="row-split">
+                <input type="number" step="0.01" name="peso" placeholder="Digite o peso inicial" required>
+                <input type="text" name="data_nascimento" placeholder="Digite a data de nascimento" onfocus="(this.type='date')" onblur="(this.type='text')">
+            </div>
+
+            <label style="font-size: 12px; color: #666;">Foto do animal (Exigência do projeto):</label>
+            <input type="file" name="foto" class="foto-input">
+
+            <div class="btn-group">
+                <button type="submit" class="btn-save">Salvar</button>
+                <button type="button" onclick="window.location.href='/home'">Cancelar</button>
+                <button type="reset">Limpar formulário</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>

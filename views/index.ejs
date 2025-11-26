@@ -1,92 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Lista de Registros</title>
-<link rel="stylesheet" href="/css/index.css">
+    <meta charset="UTF-8">
+    <title>Controle de Gado</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .btn-novo { display: inline-block; background: #28a745; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f8f9fa; }
+        img.boi-foto { width: 50px; height: 50px; object-fit: cover; border-radius: 50%; }
+        .actions a { margin-right: 10px; text-decoration: none; color: #007bff; }
+        .actions button { background: none; border: none; color: #dc3545; cursor: pointer; text-decoration: underline; font-size: 16px; }
+    </style>
 </head>
 <body>
-<div class="container">
-    <div class="left">
-        <h2>Registros</h2>
-        <button class="btn" onclick="location.href='/cadastro'">
-            Cadastrar Novo
-        </button>
-        <table id="tabela">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>CPF</th>
-                <th>Data de Nascimento</th>
-                <th></th>
-            </tr>   
-            <% usuarios.forEach(usuario =>{ %>
+    <div class="container">
+        <h1>Lista de Animais</h1>
+        
+        <% if (typeof status !== 'undefined' && status === 'success') { %>
+            <div style="background: #d4edda; color: #155724; padding: 10px; margin-bottom: 15px;">Operação realizada com sucesso!</div>
+        <% } %>
+        <% if (typeof status !== 'undefined' && status === 'error') { %>
+            <div style="background: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 15px;">Erro: <%= message %></div>
+        <% } %>
+
+        <a href="/cadastro" class="btn-novo">+ Novo Animal</a>
+
+        <table>
+            <thead>
                 <tr>
-                    <td><%= usuario.id %></td>
-                    <td><%= usuario.nome %></td>
-                    <td><%= usuario.email %></td>
-                    <td><%= usuario.telefone %></td>
-                    <td><%= usuario.cpf %></td>
-                    <td><%= usuario.data_nascimento %></td>
-                    <td>
-                        <form action="/alteracao/<%= usuario.id %>" method="get">
-                            <button class="btn" onclick="location.href='/alteracao:<%= usuario.id %>'">Editar</button>
-                        </form>
-                        <form action="/deletar/<%= usuario.id %>" method="post">
-                            <button class="btn">Excluir</button>
-                        </form>
-                    </td>
+                    <th>Foto</th>
+                    <th>Lacre (Brinco)</th>
+                    <th>Nome</th>
+                    <th>Registro</th>
+                    <th>Peso (kg)</th>
+                    <th>Nascimento</th>
+                    <th>Ações</th>
                 </tr>
-                <% }) %>
-            </table>
+            </thead>
+            <tbody>
+                <% if (usuarios.length > 0) { %>
+                    <% usuarios.forEach(boi => { %>
+                        <tr>
+                            <td>
+                                <% if (boi.foto_url) { %>
+                                    <img src="<%= boi.foto_url %>" class="boi-foto" alt="Foto">
+                                <% } else { %>
+                                    <span>Sem foto</span>
+                                <% } %>
+                            </td>
+                            <td><%= boi.numero_brinco %></td>
+                            <td><%= boi.nome %></td>
+                            <td><%= boi.registro %></td>
+                            <td><%= boi.peso %></td>
+                            <td><%= boi.data_nascimento %></td>
+                            <td class="actions">
+                                <a href="/alteracao/<%= boi.id %>">Editar</a>
+                                <form action="/deletar/<%= boi.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza?');">
+                                    <button type="submit">Excluir</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="7" style="text-align:center;">Nenhum animal cadastrado.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-    // Função que verifica a URL quando a página carrega
-    window.onload = function() {
-        // Pega os parâmetros da URL (ex: ?status=success&action=cadastro)
-        const urlParams = new URLSearchParams(window.location.search);
-        const status = urlParams.get('status');
-        const action = urlParams.get('action');
-        const message = urlParams.get('message');
-
-        // LÓGICA DE SUCESSO
-        if (status === 'success') {
-            let titulo = 'Sucesso!';
-            let texto = 'Operação realizada.';
-
-            if(action === 'cadastro') texto = 'Usuário cadastrado com sucesso!';
-            if(action === 'edicao') texto = 'Dados do usuário atualizados!';
-            if(action === 'exclusao') texto = 'Usuário removido do sistema.';
-
-            Swal.fire({
-                title: titulo,
-                text: texto,
-                icon: 'success',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#3085d6'
-            }).then(() => {
-                // (Opcional) Limpa a URL para o popup não aparecer de novo se der F5
-                window.history.replaceState(null, null, window.location.pathname);
-            });
-        }
-
-        // LÓGICA DE ERRO
-        if (status === 'error') {
-            Swal.fire({
-                title: 'Ops! Algo deu errado.',
-                text: message || 'Ocorreu um erro no servidor.',
-                icon: 'error',
-                confirmButtonText: 'Fechar'
-            }).then(() => {
-                window.history.replaceState(null, null, window.location.pathname);
-            });
-        }
-    }
-</script>
 </body>
 </html>

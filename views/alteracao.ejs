@@ -1,43 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Editar</title>
-<link rel = "stylesheet" href="/css/alteracao.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Animal</title>
+    <style>
+        /* Mesmos estilos da tela de Cadastro para manter o padrão */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: #f4f4f4; color: #333; }
+
+        nav { background-color: #e0e0e0; border-bottom: 1px solid #ccc; padding: 5px 10px; margin-bottom: 30px; }
+        nav ul { list-style: none; display: flex; gap: 20px; font-size: 14px; }
+        nav a { text-decoration: none; color: #333; }
+        nav a:hover { color: #000; text-decoration: underline; }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+
+        h2 { text-align: center; font-weight: normal; margin-bottom: 30px; font-size: 18px; }
+
+        input[type="text"], input[type="number"], input[type="date"], input[type="file"] {
+            width: 100%; padding: 10px; margin-bottom: 15px;
+            border: 1px solid #ccc; border-radius: 4px; font-size: 14px;
+            background-color: #fff; color: #333;
+        }
+
+        .row-split { display: flex; gap: 15px; }
+        .row-split input { width: 50%; }
+
+        .btn-group { margin-top: 20px; display: flex; gap: 10px; align-items: center; }
+
+        button { padding: 8px 20px; border: 1px solid #ccc; background-color: #e0e0e0; cursor: pointer; border-radius: 3px; font-size: 14px; }
+        button:hover { background-color: #d0d0d0; }
+
+        .btn-save { border: 2px solid #87CEEB; background-color: #e0e0e0; font-weight: bold; }
+
+        /* Estilo extra para mostrar a foto atual */
+        .foto-atual { text-align: center; margin-bottom: 15px; }
+        .foto-atual img { width: 100px; height: 100px; object-fit: cover; border-radius: 50%; border: 3px solid #ccc; }
+        .aviso-foto { font-size: 12px; color: #666; margin-bottom: 5px; display: block;}
+    </style>
 </head>
 <body>
-<!--Container principal que agrupa todos os elementos-->
-<div class="container">
-<form action="/alterar/<%= usuario.id %>" method="post">
-    <h2>Editar Registro</h2>
 
-    <!--Caixa de entrada para editar o nome-->
-    <div class="input-box">
-        <input id="nome" value="<%= usuario.nome %>" name="nome">
+    <nav>
+        <ul>
+            <li><a href="#">Cadastros</a></li>
+            <li><a href="#">Relatórios</a></li>
+            <li><a href="#">Laboratório</a></li>
+            <li><a href="#">Movimentação</a></li>
+            <li><a href="#">Estoque</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Editar Dados do Animal</h2>
+
+        <% 
+            let dataFormatada = '';
+            if (usuario.data_nascimento) {
+                let dataObj = new Date(usuario.data_nascimento);
+                // Garante formato AAAA-MM-DD
+                dataFormatada = dataObj.toISOString().split('T')[0];
+            }
+        %>
+
+        <form action="/alterar/<%= usuario.id %>" method="POST" enctype="multipart/form-data">
+            
+            <% if (usuario.foto_url) { %>
+                <div class="foto-atual">
+                    <p class="aviso-foto">Foto Atual:</p>
+                    <img src="<%= usuario.foto_url %>" alt="Foto do animal">
+                </div>
+            <% } %>
+
+            <label class="aviso-foto">Código do Lacre (Brinco):</label>
+            <input type="text" name="numero_brinco" value="<%= usuario.numero_brinco %>" required>
+            
+            <label class="aviso-foto">Nome do Animal:</label>
+            <input type="text" name="nome" value="<%= usuario.nome %>">
+            
+            <label class="aviso-foto">Registro:</label>
+            <input type="text" name="registro" value="<%= usuario.registro %>">
+            
+            <label class="aviso-foto">Registro do Pai:</label>
+            <input type="text" name="pai" value="<%= usuario.pai %>">
+            
+            <label class="aviso-foto">Registro da Mãe:</label>
+            <input type="text" name="mae" value="<%= usuario.mae %>">
+
+            <div class="row-split">
+                <div>
+                    <label class="aviso-foto">Peso (Kg):</label>
+                    <input type="number" step="0.01" name="peso" value="<%= usuario.peso %>" required>
+                </div>
+                <div>
+                    <label class="aviso-foto">Nascimento:</label>
+                    <input type="date" name="data_nascimento" value="<%= dataFormatada %>">
+                </div>
+            </div>
+
+            <label class="aviso-foto" style="margin-top: 10px;">Alterar Foto (Opcional):</label>
+            <input type="file" name="foto" style="font-size: 12px;">
+
+            <div class="btn-group">
+                <button type="submit" class="btn-save">Salvar Alterações</button>
+                <button type="button" onclick="window.location.href='/home'">Cancelar</button>
+            </div>
+        </form>
     </div>
 
-    <!--Caixa de entrada para editar o email-->
-    <div class="input-box">
-        <input id="email" value="<%= usuario.email %>" name="email">
-    </div>
-
-    <!--Caixa de entrada para editar o telefone-->
-    <div class="input-box">
-        <input id="telefone" value="<%= usuario.telefone %>" name="tel">
-    </div>
-
-    <!--Caixa de entrada para editar o CPF-->
-    <div class="input-box">
-        <input id="cpf" value="<%= usuario.cpf %>" name="cpf" placeholder="CPF">
-    </div>
-
-    <!--Caixa de entrada para editar a Data de Nascimento-->
-    <div class="input-box">
-        <input id="data_nascimento" type="date" value="<%= usuario.data_nascimento %>" name="data_nascimento">
-    </div>
-
-    <input type="submit" class="btn" value="Alterar">
-</form>
-</div>
 </body>
 </html>

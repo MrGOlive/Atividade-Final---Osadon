@@ -1,86 +1,76 @@
-const knex = require("./banco_dados/db")
+const knex = require("./banco_dados/db");
 
-// Função de inserir o usuario
-async function insertUsuario(nome, email, tel, cpf, dataNasc){
+async function insertBoi(numero_brinco, nome, registro, pai, mae, peso, dataNasc, fotoUrl){
     try {
-        await knex('usuarios').insert({
-            nome: nome,
-            email: email,
-            telefone: tel,
-            cpf: cpf,
-            data_Nascimento: dataNasc // adicionar os campos cpf e data de nascimento 
-        })
-        console.log('Usuário inserido com sucesso!');
-    }   catch (error) {                     
-        console.error('ERRO ao inserir usuário:', error);
-        // Retorna lista vazia para o código que chamou a função
-        return [];
+        await knex('bois').insert({
+            numero_brinco: numero_brinco,
+            nome: nome,        // Novo
+            registro: registro, // Novo
+            pai: pai,          // Novo
+            mae: mae,          // Novo
+            // raca: 'Mestiço', // Removi raça da tela, pode deixar fixo ou null se o banco permitir
+            peso: peso,
+            data_nascimento: dataNasc,
+            foto_url: fotoUrl
+        });
+        console.log('Boi inserido com sucesso!');
+    } catch (error) {                      
+        console.error('ERRO ao inserir:', error);
+        throw error;
     }        
 }
 
-// Função para ler todos os usuários do banco de dados
-async function readUsuarios(){
+async function readBois(){
     try{
-        const usuarios = await knex('usuarios').select()
-        return usuarios
-    }
-    catch (error){
-        console.error('ERRO ao buscar usuários:', error);
-        // Retorna lista vazia para o código que chamou a função
+        return await knex('bois').select();
+    } catch (error){
+        console.error('ERRO ao buscar bois:', error);
         return [];
     }
 }
 
-// Função pra ler um registro especifico: facilitar o update 
 async function readUm(id) {
     try{
-        const usuarios = await knex('usuarios').where("id",id).select()
-        return usuarios
-    }
-    catch (error){
-        console.error('ERRO ao buscar usuários:', error);
-        // Retorna lista vazia para o código que chamou a função
+        return await knex('bois').where("id", id).select();
+    } catch (error){
+        console.error('ERRO ao buscar boi:', error);
         return [];
     }
 }
 
-// Função para atualizar um registro
-async function updateUsuarios(id, nome, email, tel, cpf, dataNasc) {
+async function updateBoi(id, numero_brinco, raca, peso, dataNasc, fotoUrl) {
     try{
-        await knex('usuarios').where("id",id).update({
-            nome: nome,
-            email: email,
-            telefone: tel,
-            cpf: cpf,
-            data_Nascimento: dataNasc
-    })
+        const dadosParaAtualizar = {
+            numero_brinco: numero_brinco,
+            raca: raca,
+            peso: peso,
+            data_nascimento: dataNasc
+        };
+        // Só atualiza a foto se veio uma nova
+        if(fotoUrl) {
+            dadosParaAtualizar.foto_url = fotoUrl;
+        }
 
-    }catch (error){
-        console.error('ERRO ao atualizar o usuário:', error);
-        // Retorna lista vazia para o código que chamou a função
-        return [];
+        await knex('bois').where("id", id).update(dadosParaAtualizar);
+    } catch (error){
+        console.error('ERRO ao atualizar:', error);
+        throw error;
     }
 }
 
-// Função para deletar um registro
-async function deletarUsuario(id) {
+async function deletarBoi(id) {
     try{
-        return await knex('usuarios')
-        .where('id', id)
-        .del()
-    }
-    catch (error){
-        // Loga o erro no terminal para o desenvolvedor
-        console.error('ERRO ao deletar usuários:', error);
-        // Retorna lista vazia para o código que chamou a função
-        return [];
+        return await knex('bois').where('id', id).del();
+    } catch (error){
+        console.error('ERRO ao deletar:', error);
+        throw error;
     }
 }
 
 module.exports = {
-    usuario: readUm, 
-    usuarios: readUsuarios, 
-    inserir: insertUsuario, 
-    deletar: deletarUsuario, 
-    alterar: updateUsuarios
+    buscarBoi: readUm, 
+    listarBois: readBois, 
+    inserir: insertBoi, 
+    deletar: deletarBoi, 
+    alterar: updateBoi
 }
